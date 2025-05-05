@@ -1,7 +1,7 @@
 import { Work_Sans, Roboto_Slab } from "next/font/google";
 import "./globals.css";
-import Navigation from "./partials/navigation";
-import FooterComponent from "./partials/footer_component";
+import Navigation from "../partials/navigation";
+import FooterComponent from "../partials/footer_component";
 
 const headingFont = Work_Sans({
   variable: "--font-heading",

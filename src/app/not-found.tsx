@@ -1,5 +1,5 @@
 import Link from "next/link";
-import icons from "./static_resources/icons";
+import icons from "../static_resources/icons";
 
 export default function NotFound() {
   return (
