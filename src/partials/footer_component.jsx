@@ -3,7 +3,7 @@ import icons from "../static_resources/icons";
 export default function FooterComponent() {
   return (
     <footer className="bg-(--color-prime) p-4 text-white font-heading mt-auto">
-      <div className="max-w-7xl m-auto grid sm:grid-cols-2 py-4 gap-8">
+      <div className="max-w-7xl m-auto grid md:grid-cols-2 py-4 gap-8">
         <div className="">
           <div className="flex font-semibold items-center text-3xl mb-2 gap-1">
             <div className="w-12">{icons.get("logo")}</div>
@@ -22,7 +22,7 @@ export default function FooterComponent() {
           </div>
           </div>
         </div>
-        <div className="sm:px-16 sm:ml-auto">
+        <div className="md:px-16 md:ml-auto">
           <h2 className="text-2xl font-heading font-semibold mb-2">Quick Links</h2>
           <Link className="block font-text text-lg mb-1 hover:underline hover:text-(--color-light)" href="/">
             Home

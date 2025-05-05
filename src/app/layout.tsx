@@ -2,6 +2,7 @@ import { Work_Sans, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import Navigation from "../partials/navigation";
 import FooterComponent from "../partials/footer_component";
+import { verifySession } from "./lib/dal";
 
 const headingFont = Work_Sans({
   variable: "--font-heading",
@@ -13,11 +14,12 @@ const textFont = Roboto_Slab({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await verifySession();
   return (
     <html lang="en">
       <head>
@@ -26,11 +28,11 @@ export default function RootLayout({
       <body
         className={`${headingFont.variable} ${textFont.variable} antialiased min-h-screen flex flex-col`}
       >
-      <Navigation />
-      <section className="max-w-7xl mx-auto my-8">
-        {children}
-      </section>
-      <FooterComponent />
+        <Navigation user={user}/>
+        <main>
+          <section className="max-w-7xl mx-auto my-8">{children}</section>
+        </main>
+        <FooterComponent />
       </body>
     </html>
   );
