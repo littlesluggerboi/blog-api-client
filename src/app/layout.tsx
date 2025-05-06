@@ -30,7 +30,7 @@ export default async function RootLayout({
       >
         <Navigation user={user}/>
         <main>
-          <section className="max-w-7xl mx-auto my-8">{children}</section>
+          {children}
         </main>
         <FooterComponent />
       </body>
