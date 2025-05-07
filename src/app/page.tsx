@@ -1,14 +1,19 @@
 import { Metadata } from "next";
-import { getPosts, verifySession } from "./lib/dal";
 import Link from "next/link";
 import Posts from "@/partials/posts";
+import { verifySession } from "./lib/dal";
 
 export const metadata: Metadata = {
   title: "A Blogs | Home",
 };
 export default async function Home() {
   const user = await verifySession();
-  const posts = await getPosts();
+  const url = `${process.env.BACKEND_URL}/posts?published=${true}`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+  if (!res.ok) {
+    throw new Error(`${res.status} | ${res.statusText}`);
+  }
+  const { posts } = await res.json();
   return (
     <>
       <section className="bg-gray-200 py-12">
@@ -63,7 +68,7 @@ export default async function Home() {
       </section>
       <section className="py-16 mx-4">
         <div className="m-auto max-w-7xl ">
-          <Posts posts={posts}/>
+          <Posts posts={posts} />
         </div>
       </section>
       <section className="py-16 text-center bg-gray-200">
