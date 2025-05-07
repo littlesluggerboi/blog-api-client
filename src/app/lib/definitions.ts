@@ -73,3 +73,17 @@ export type SessionPayload = {
   username: string | null;
   expiresAt: Date;
 };
+
+export type Post = {
+  id: number;
+  author_id: number;
+  title: string;
+  content: string;
+  is_published: boolean;
+  created_at: string;
+  last_edited: string;
+  author: {
+    username: string | null;
+    email: string;
+  };
+};

@@ -15,10 +15,10 @@ export default function FooterComponent() {
           </p>
           <div className="flex">
           <div className="w-10 mr-2">
-            <a href="/">{icons.get("twitter")}</a>
+            <Link href="/">{icons.get("twitter")}</Link>
           </div>
           <div className="w-10">
-            <a href="/">{icons.get("instagram")}</a>
+            <Link href="/">{icons.get("instagram")}</Link>
           </div>
           </div>
         </div>

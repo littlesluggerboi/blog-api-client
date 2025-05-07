@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { verifySession } from "./lib/dal";
+import { getPosts, verifySession } from "./lib/dal";
 import Link from "next/link";
 import Posts from "@/partials/posts";
 
@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 export default async function Home() {
   const user = await verifySession();
+  const posts = await getPosts();
   return (
     <>
       <section className="bg-gray-200 py-12">
@@ -62,7 +63,7 @@ export default async function Home() {
       </section>
       <section className="py-16 mx-4">
         <div className="m-auto max-w-7xl ">
-          <Posts/>
+          <Posts posts={posts}/>
         </div>
       </section>
       <section className="py-16 text-center bg-gray-200">
