@@ -36,6 +36,20 @@ export const LoginFormSchema = z.object({
     .trim(),
 });
 
+export const NewPostFormSchema = z.object({
+  title: z.string().trim().min(1, { message: "Title must not be empty." }),
+  content: z
+    .string()
+    .trim()
+    .min(1, { message: "Content field cannot be empty." }),
+  is_published: z.preprocess((value) => {
+    if (value == "on") {
+      return "true";
+    }
+    return "false";
+  }, z.string()),
+});
+
 export type LoginFormState =
   | {
       errors?: {
@@ -53,6 +67,17 @@ export type SignupFormState =
         email?: string[];
         password?: string[];
         password_confirm?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+
+export type NewPostFormState =
+  | {
+      errors?: {
+        title?: string[];
+        content?: string[];
+        is_published?: string[];
       };
       message?: string;
     }
