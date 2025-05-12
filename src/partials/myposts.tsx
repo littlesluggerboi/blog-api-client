@@ -4,9 +4,30 @@ import PostCard from "./post";
 import icons from "@/static_resources/icons";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { deletePost, publishPost } from "@/app/myposts/postActions";
 
 export default function MyPosts(props: { posts: Post[] }) {
   const router = useRouter();
+  const deleteAction = (id: number) => {
+    const advance = confirm(
+      "Are you sure you want to delete this post? Deleting the post will also delete its related comments"
+    );
+    if (advance) {
+      deletePost(id)
+        .then(() => router.refresh())
+        .catch((err) => alert(err.message));
+    }
+  };
+  const publishAction = (id: number, pulish_value: boolean) => {
+    const advance = confirm(
+      "Are you sure you want to publish this post? Publishing it will make it visible to everyone website visitor."
+    );
+    if (advance) {
+      publishPost(id, pulish_value)
+        .then(() => router.refresh())
+        .catch((err) => alert(err.message));
+    }
+  };
   return (
     <>
       {props.posts.length > 0 && (
@@ -32,13 +53,19 @@ export default function MyPosts(props: { posts: Post[] }) {
                     >
                       <div className="w-6">{icons.get("edit")}</div>
                     </button>
-                    <button className="cursor-pointer rounded-sm p-1 hover:bg-gray-200">
+                    <button
+                      onClick={() => deleteAction(value.id)}
+                      className="cursor-pointer rounded-sm p-1 hover:bg-gray-200"
+                    >
                       <div className="w-6">{icons.get("delete")}</div>
                     </button>
                     <button
                       className={"cursor-pointer font-heading ml-auto p-1 text-white shadow hover:opacity-50 ".concat(
                         value.is_published ? "bg-red-500" : "bg-green-500"
                       )}
+                      onClick={() =>
+                        publishAction(value.id, !value.is_published)
+                      }
                     >
                       {value.is_published ? "Unpublish" : "Publish"}
                     </button>
