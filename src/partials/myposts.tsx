@@ -18,12 +18,17 @@ export default function MyPosts(props: { posts: Post[] }) {
         .catch((err) => alert(err.message));
     }
   };
-  const publishAction = (id: number, pulish_value: boolean) => {
-    const advance = confirm(
-      "Are you sure you want to publish this post? Publishing it will make it visible to everyone website visitor."
-    );
+  const publishAction = (id: number, publish_value: boolean) => {
+    let message =
+      "Are you sure you want to publish this post? Publishing it will make it visible to everyone website visitor.";
+    if (!publish_value) {
+      message =
+        "By unpublishing a post, you hide it from the public and will only to visible for yourself. Are you sure you want to unpublish?";
+    }
+    const advance = confirm(message);
+
     if (advance) {
-      publishPost(id, pulish_value)
+      publishPost(id, publish_value)
         .then(() => router.refresh())
         .catch((err) => alert(err.message));
     }

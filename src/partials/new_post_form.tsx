@@ -1,10 +1,12 @@
 "use client";
 
 import Spinner from "./spinner";
-import { postPost } from "@/app/actions/newpost";
+import { postPost } from "@/app/actions/post";
+import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 
 export default function NewPostForm() {
+  const router = useRouter();
   const [state, action, pending] = useActionState(postPost, undefined);
   return (
     <>
@@ -71,6 +73,7 @@ export default function NewPostForm() {
             <button
               className="shadow py-2 px-4 border font-heading cursor-pointer hover:bg-gray-300 text-lg border-gray-300 rounded-sm"
               type="button"
+              onClick={()=> router.back()}
             >
               Cancel
             </button>

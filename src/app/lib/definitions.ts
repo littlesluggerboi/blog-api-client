@@ -70,6 +70,18 @@ export const NewPostFormSchema = z.object({
   }, z.string()),
 });
 
+export const UpdatePostSchema = z.object({
+  title: z.string().trim().min(1, { message: "Title must not be empty." }),
+  content: z
+    .string()
+    .trim()
+    .min(1, { message: "Content field cannot be empty." }),
+  id: z.custom((data) => {
+    const num = parseInt(data);
+    return !isNaN(num) && data > 0;
+  }),
+});
+
 export type LoginFormState =
   | {
       errors?: {
@@ -107,7 +119,7 @@ export type UpdateCommentFormState =
       errors?: {
         comment?: string[];
         id?: string[];
-        post_id?: string[]
+        post_id?: string[];
       };
       message?: string;
     }
@@ -119,6 +131,17 @@ export type NewPostFormState =
         title?: string[];
         content?: string[];
         is_published?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+
+export type UpdatePostFormState =
+  | {
+      errors?: {
+        title?: string[];
+        content?: string[];
+        id?: string[];
       };
       message?: string;
     }
