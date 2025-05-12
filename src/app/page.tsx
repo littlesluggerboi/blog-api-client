@@ -8,11 +8,8 @@ export const metadata: Metadata = {
 };
 export default async function Home() {
   const user = await verifySession();
-  const url = `${process.env.BACKEND_URL}/posts?published=${true}`;
+  const url = `${process.env.BACKEND_URL}/posts`;
   const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
-  if (!res.ok) {
-    throw new Error(`${res.status} | ${res.statusText}`);
-  }
   const { posts } = await res.json();
   return (
     <>

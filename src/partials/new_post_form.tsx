@@ -67,7 +67,7 @@ export default function NewPostForm() {
               * {state.errors.is_published}
             </p>
           )}
-          <div className="flex justify-end items-center gap-2">
+          <div className="flex justify-end items-center gap-2 mt-8">
             <button
               className="shadow py-2 px-4 border font-heading cursor-pointer hover:bg-gray-300 text-lg border-gray-300 rounded-sm"
               type="button"

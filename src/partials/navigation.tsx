@@ -58,7 +58,7 @@ export default function Navigation(props: { user: User | null }) {
           {props.user && (
             <>
               <Link
-                href="/mypost"
+                href="/myposts"
                 className={
                   "hover:text-(--color-light) " +
                   (path.startsWith("/myposts") ? "text-(--color-light)" : "")
@@ -167,7 +167,7 @@ export default function Navigation(props: { user: User | null }) {
               </Link>
               <Link
                 className="bg-(--color-light) py-2 px-4 rounded-sm hover:opacity-50"
-                href="/signup"
+                href="/newpost"
               >
                 Write Post
               </Link>

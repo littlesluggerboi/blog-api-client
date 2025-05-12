@@ -36,6 +36,26 @@ export const LoginFormSchema = z.object({
     .trim(),
 });
 
+export const CommentFormSchema = z.object({
+  post_id: z.custom((data) => {
+    const num = parseInt(data);
+    return !isNaN(num) && data > 0;
+  }),
+  comment: z.string().min(1, { message: "Comment cannot be empty." }).trim(),
+});
+
+export const UpdateCommentSchema = z.object({
+  comment: z.string().min(1, { message: "Comment cannot be empty." }).trim(),
+  id: z.custom((data) => {
+    const num = parseInt(data);
+    return !isNaN(num) && data > 0;
+  }),
+  post_id: z.custom((data) => {
+    const num = parseInt(data);
+    return !isNaN(num) && data > 0;
+  }),
+});
+
 export const NewPostFormSchema = z.object({
   title: z.string().trim().min(1, { message: "Title must not be empty." }),
   content: z
@@ -67,6 +87,27 @@ export type SignupFormState =
         email?: string[];
         password?: string[];
         password_confirm?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+
+export type CommentFormState =
+  | {
+      errors?: {
+        comment?: string[];
+        post_id?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+
+export type UpdateCommentFormState =
+  | {
+      errors?: {
+        comment?: string[];
+        id?: string[];
+        post_id?: string[]
       };
       message?: string;
     }
@@ -112,3 +153,19 @@ export type Post = {
     email: string;
   };
 };
+export type Comment = {
+  id: number;
+  post_id: number;
+  user_id: number;
+  comment: string;
+  created_at: string;
+  updated_at: string;
+  user: {
+    username: string | null;
+    email: string;
+  };
+};
+
+export interface PostWithComments extends Post {
+  comments: Comment[];
+}

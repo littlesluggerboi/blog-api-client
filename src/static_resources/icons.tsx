@@ -280,4 +280,12 @@ icons.set(
     <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
   </svg>
 );
+
+icons.set(
+  "ellipsis menu",
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <title>menu</title>
+    <path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
+  </svg>
+);
 export default icons;
